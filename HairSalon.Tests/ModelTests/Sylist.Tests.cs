@@ -46,7 +46,7 @@ namespace HairSalon.Tests
       CollectionAssert.AreEqual(testList, resultList);
     }
     [TestMethod]
-    public void Find_FindsCorrectStylist_Stylist()
+    public void Search_ReturnsCorrectStylist_Stylist()
     {
       Stylist testStylist1 = new Stylist("John", "Normal Cuts");
       testStylist1.Save();
