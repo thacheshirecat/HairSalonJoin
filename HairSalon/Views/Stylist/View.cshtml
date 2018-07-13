@@ -5,6 +5,13 @@
 </head>
 <body>
   <div class="container">
-
+    <h1>@Model.GetName()</h1>
+    <h2>About/Styles</h2>
+    <div class="well">
+      <p>@Model.GetStyle()</p>
+    </div>
+    <form action="/Client/@Model.GetId()/View">
+      <button class="btn btn-success" type="click">View Client List</button>
+    </form>
   </div>
 </body>

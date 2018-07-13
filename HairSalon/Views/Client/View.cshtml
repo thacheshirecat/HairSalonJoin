@@ -1,5 +1,3 @@
-@using HairSalon.Models;
-
 <head>
     <title>The Hair Salon</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
@@ -7,19 +5,10 @@
 </head>
 <body>
   <div class="container">
-    <h1>List of All Clients</h1>
+    <h1>Client List</h1>
     @foreach(var person in Model)
     {
       <li>Name: @person.GetName(), Phone#@person.GetPhone(), Stylist: @Stylist.Search(@person.GetCategoryId()).GetName()</li>
     }
-    <form action="/Client/CreateForm">
-      <button class="btn btn-success" type="click">Add New Client</button>
-    </form>
-    <form action="/Client/DeleteAll">
-      <button class="btn btn-danger" type="click">Delete All Clients</button>
-    </form>
-    <form action="/Stylist">
-      <button class="btn btn-success" type="click">Back</button>
-    </form>
   </div>
 </body>

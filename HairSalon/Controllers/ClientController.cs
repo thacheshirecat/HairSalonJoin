@@ -29,5 +29,10 @@ namespace HairSalon.Controllers
       Client.DeleteAll();
       return View("Index", Client.GetAll());
     }
+    [HttpGet("/Client/{id}/View")]
+    public ActionResult ViewClients(int id)
+    {
+      return View("View", Client.CategorySearch(id));
+    }
   }
 }
