@@ -5,6 +5,16 @@
 </head>
 <body>
   <div class="container">
-
+    <h1>List of Stylists</h1>
+    @foreach(var person in Model)
+    {
+      <li>Name: @person.GetName(), Style: @person.GetStyle()</li>
+    }
+    <form action="/Stylist/CreateForm">
+      <button class="btn btn-success" type="click">Add New Stylist</button>
+    </form>
+    <form action="/Client">
+      <button class="btn btn-success" type="click">View Client List</button>
+    </form>
   </div>
 </body>
