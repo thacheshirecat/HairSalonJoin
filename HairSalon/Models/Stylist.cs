@@ -69,7 +69,7 @@ namespace HairSalon.Models
     }
     public static List<Stylist> GetAll()
     {
-
+      return null;
     }
 
   }

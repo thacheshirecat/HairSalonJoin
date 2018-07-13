@@ -1,6 +1,6 @@
 using System;
 using MySql.Data.MySqlClient;
-using ToDoList;
+using HairSalon;
 
 namespace HairSalon
 {
