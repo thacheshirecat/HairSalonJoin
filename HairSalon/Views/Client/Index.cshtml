@@ -1,3 +1,5 @@
+@using HairSalon.Models;
+
 <head>
     <title>The Hair Salon</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
@@ -8,7 +10,7 @@
     <h1>List of Clients</h1>
     @foreach(var person in Model)
     {
-      <li>Name: @person.GetName(), Phone#@person.GetNumber(), Stylist: </li>
+      <li>Name: @person.GetName(), Phone#@person.GetPhone(), Stylist: @Stylist.Search(@person.GetCategoryId()).GetName()</li>
     }
     <form action="/Client/CreateForm">
       <button class="btn btn-success" type="click">Add New Client</button>

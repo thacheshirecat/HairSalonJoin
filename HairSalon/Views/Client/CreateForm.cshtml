@@ -11,10 +11,11 @@
       <input type="text" name="newname" id="newname" class="form-control" required>
       <label for="newphone">Phone#</label>
       <input type="text" name="newphone" id="newphone" class="form-control" required>
-      <select for="newstylist" required>
+      <label for="newstylist">Select Stylist</label>
+      <select name="newstylist" required>
       @foreach(var person in Model)
       {
-        <option value="@person.GetName()">@person.GetName()</option>
+        <option value="@person.GetId()">@person.GetName()</option>
       }
       </select>
       <button class="btn btn-success" type="submit">Add New Client</button>

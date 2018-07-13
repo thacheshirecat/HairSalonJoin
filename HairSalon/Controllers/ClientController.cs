@@ -17,9 +17,9 @@ namespace HairSalon.Controllers
       return View(Stylist.GetAll());
     }
     [HttpPost("/Client/Add")]
-    public ActionResult CreateForm(string newname, string newstyle, int newcatid)
+    public ActionResult CreateForm(string newname, string newphone, int newstylist)
     {
-      Client newClient = new Client(newname, newstyle, newcatid);
+      Client newClient = new Client(newname, newphone, newstylist);
       newClient.Save();
       return View("Index", Client.GetAll());
     }
