@@ -8,9 +8,14 @@
 <body>
   <div class="container">
     <h1>Client List</h1>
-    @foreach(var person in Model)
-    {
-      <li>Name: @person.GetName(), Phone#@person.GetPhone(), Stylist: @Stylist.Search(@person.GetCategoryId()).GetName()</li>
-    }
+    <div class="well">
+      @foreach(var person in Model)
+      {
+        <li>Name: @person.GetName(), Phone#@person.GetPhone(), Stylist: @Stylist.Search(@person.GetCategoryId()).GetName()</li>
+      }
+    </div>
+    <form action="/Stylist">
+      <button class="btn btn-success" type="click">Home</button>
+    </form>
   </div>
 </body>

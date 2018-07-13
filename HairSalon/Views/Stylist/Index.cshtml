@@ -6,10 +6,12 @@
 <body>
   <div class="container">
     <h1>List of Stylists</h1>
-    @foreach(var person in Model)
-    {
-      <li>Name: @person.GetName() -- <a href="/Stylist/@person.GetId()/View">More Info</a></li>
-    }
+    <div class="well">
+      @foreach(var person in Model)
+      {
+        <li>Name: @person.GetName() -- <a href="/Stylist/@person.GetId()/View">More Info</a></li>
+      }
+    </div>
     <form action="/Stylist/CreateForm">
       <button class="btn btn-success" type="click">Add New Stylist</button>
     </form>
