@@ -23,5 +23,16 @@ namespace HairSalon.Controllers
       newStylist.Save();
       return View("Index", Stylist.GetAll());
     }
+    [HttpGet("/Stylist/DeleteAll")]
+    public ActionResult DeleteAllStylists()
+    {
+      Stylist.DeleteAll();
+      return View("Index", Stylist.GetAll());
+    }
+    [HttpGet("/Stylist/{id}/View")]
+    public ActionResult View(int id)
+    {
+      return View();
+    }
   }
 }

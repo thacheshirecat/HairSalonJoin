@@ -8,10 +8,13 @@
     <h1>List of Stylists</h1>
     @foreach(var person in Model)
     {
-      <li>Name: @person.GetName(), Style: @person.GetStyle()</li>
+      <li>Name: @person.GetName() -- <a href="/Stylist/@person.GetId()/View">More Info</a></li>
     }
     <form action="/Stylist/CreateForm">
       <button class="btn btn-success" type="click">Add New Stylist</button>
+    </form>
+    <form action="/Stylist/DeleteAll">
+      <button class="btn btn-danger" type="click">Delete All Stylists</button>
     </form>
     <form action="/Client">
       <button class="btn btn-success" type="click">View Client List</button>
