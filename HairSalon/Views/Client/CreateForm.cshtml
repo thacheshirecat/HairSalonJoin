@@ -5,6 +5,20 @@
 </head>
 <body>
   <div class="container">
+    <h1>Add a New Client</h1>
+    <form action="/Client/Add" method="post">
+      <label for="newname">Name</label>
+      <input type="text" name="newname" id="newname" class="form-control" required>
+      <label for="newphone">Phone#</label>
+      <input type="text" name="newphone" id="newphone" class="form-control" required>
+      <select for="newstylist" required>
+      @foreach(var person in Model)
+      {
+        <option value="@person.GetName()">@person.GetName()</option>
+      }
+      </select>
+      <button class="btn btn-success" type="submit">Add New Client</button>
+    </form>
 
   </div>
 </body>

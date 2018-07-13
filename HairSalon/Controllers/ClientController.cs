@@ -14,7 +14,7 @@ namespace HairSalon.Controllers
     [HttpGet("/Client/CreateForm")]
     public ActionResult CreateForm()
     {
-      return View();
+      return View(Stylist.GetAll());
     }
     [HttpPost("/Client/Add")]
     public ActionResult CreateForm(string newname, string newstyle, int newcatid)
