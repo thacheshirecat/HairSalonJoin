@@ -58,7 +58,6 @@ namespace HairSalon.Tests
       List<Client> resultList = Client.CategorySearch(1);
       CollectionAssert.AreEqual(testList, resultList);
     }
-
     public void Dispose()
     {
       Client.DeleteAll();
