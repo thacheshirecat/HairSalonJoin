@@ -5,6 +5,19 @@
 </head>
 <body>
   <div class="container">
-
+    <h1>List of Clients</h1>
+    @foreach(var person in Model)
+    {
+      <li>Name: @person.GetName(), Phone#@person.GetNumber(), Stylist: </li>
+    }
+    <form action="/Client/CreateForm">
+      <button class="btn btn-success" type="click">Add New Client</button>
+    </form>
+    <form action="/Client/DeleteAll">
+      <button class="btn btn-danger" type="click">Delete All Clients</button>
+    </form>
+    <form action="/Stylist">
+      <button class="btn btn-success" type="click">Back</button>
+    </form>
   </div>
 </body>
