@@ -46,16 +46,26 @@ namespace HairSalon.Tests
       CollectionAssert.AreEqual(testList, resultList);
     }
     [TestMethod]
-    public void StylistSearch_ReturnsCorrectClients_ClientList()
+    public void Search_ReturnsCorrectClient_Client()
     {
       Client testClient1 = new Client("Billy", "5551238888", 1);
       Client testClient2 = new Client("Jean", "5551238889", 1);
-      Client testClient3 = new Client("Jean", "5551238889", 2);
+      testClient1.Save();
+      testClient2.Save();
+      Client result = Client.Search(testClient1.GetId());
+      Assert.AreEqual(testClient1, result);
+    }
+    [TestMethod]
+    public void FindClientsByStylist_ReturnsCorrectClients_ClientList()
+    {
+      Client testClient1 = new Client("Billy", "5551238888", 1);
+      Client testClient2 = new Client("Jean", "5551238889", 1);
+      Client testClient3 = new Client("Tom", "5551239000", 2);
       List<Client> testList = new List<Client>{testClient1, testClient2};
       testClient1.Save();
       testClient2.Save();
       testClient3.Save();
-      List<Client> resultList = Client.StylistSearch(1);
+      List<Client> resultList = Client.FindClientsByStylist(1);
       CollectionAssert.AreEqual(testList, resultList);
     }
     [TestMethod]

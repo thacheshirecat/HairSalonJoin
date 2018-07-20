@@ -30,9 +30,9 @@ namespace HairSalon.Controllers
       return View("Index", Client.GetAll());
     }
     [HttpGet("/Client/{id}/View")]
-    public ActionResult ViewClients(int id)
+    public ActionResult ViewClient(int id)
     {
-      return View("View", Client.StylistSearch(id));
+      return View("View", Client.FindClientsByStylist(id));
     }
   }
 }

@@ -117,7 +117,7 @@ namespace HairSalon.Models
       }
       return allClients;
     }
-    public static List<Client> StylistSearch(int stylistid)
+    public static List<Client> FindClientsByStylist(int stylistid)
     {
       List<Client> searchClients = new List<Client> {};
       MySqlConnection conn = DB.Connection();
@@ -144,6 +144,11 @@ namespace HairSalon.Models
           conn.Dispose();
       }
       return searchClients;
+    }
+    public static Client Search(int id)
+    {
+      Client foundClient = new Client("null", "null", 0);
+      return foundClient;
     }
     public void Delete()
     {
