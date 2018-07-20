@@ -116,11 +116,12 @@ namespace HairSalon.Models
       conn.Open();
 
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM stylists WHERE id = (@catid);";
+      cmd.CommandText = @"SELECT * FROM stylists WHERE id = @StylistId;";
 
-      cmd.Parameters.Add(new MySqlParameter("@catid", id));
+      cmd.Parameters.Add(new MySqlParameter("@StylistId", id));
 
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
+
       int CategoryId = 0;
       string StylistName = "";
       string StylistStyle = "";
@@ -138,6 +139,10 @@ namespace HairSalon.Models
           conn.Dispose();
       }
       return newStylist;
+    }
+    public void Delete()
+    {
+
     }
   }
 }

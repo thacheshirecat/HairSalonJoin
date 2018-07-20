@@ -46,7 +46,7 @@ namespace HairSalon.Tests
       CollectionAssert.AreEqual(testList, resultList);
     }
     [TestMethod]
-    public void CategorySearch_ReturnsCorrectClients_ClientList()
+    public void StylistSearch_ReturnsCorrectClients_ClientList()
     {
       Client testClient1 = new Client("Billy", "5551238888", 1);
       Client testClient2 = new Client("Jean", "5551238889", 1);
@@ -55,7 +55,22 @@ namespace HairSalon.Tests
       testClient1.Save();
       testClient2.Save();
       testClient3.Save();
-      List<Client> resultList = Client.CategorySearch(1);
+      List<Client> resultList = Client.StylistSearch(1);
+      CollectionAssert.AreEqual(testList, resultList);
+    }
+    [TestMethod]
+    public void Delete_DeletesSpecifiedClientFromDB_StylistList()
+    {
+      Client testClient1 = new Client("Billy", "5551238888", 1);
+      Client testClient2 = new Client("Jean", "5551238889", 1);
+
+      testClient1.Save();
+      testClient2.Save();
+      testClient2.Delete();
+
+      List<Client> testList = new List<Client>{testClient1};
+      List<Client> resultList = Client.GetAll();
+
       CollectionAssert.AreEqual(testList, resultList);
     }
     public void Dispose()

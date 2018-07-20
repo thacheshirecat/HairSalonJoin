@@ -9,14 +9,14 @@ namespace HairSalon.Models
     private int _id;
     private string _name;
     private string _phone;
-    private int category_id;
+    private int stylist_id;
 
-    public Client(string name, string phone, int catid, int id = 0)
+    public Client(string name, string phone, int stylistid, int id = 0)
     {
       _name = name;
       _phone = phone;
       _id = id;
-      category_id = catid;
+      stylist_id = stylistid;
     }
 
     public string GetName()
@@ -27,9 +27,9 @@ namespace HairSalon.Models
     {
       return _phone;
     }
-    public int GetCategoryId()
+    public int GetStylistId()
     {
-      return category_id;
+      return stylist_id;
     }
     public int GetId()
     {
@@ -48,8 +48,8 @@ namespace HairSalon.Models
           bool idEquality = (this.GetId() == newClient.GetId());
           bool nameEquality = (this.GetName() == newClient.GetName());
           bool phoneEquality = (this.GetPhone() == newClient.GetPhone());
-          bool catIdEquality = (this.GetCategoryId() == newClient.GetCategoryId());
-          return (idEquality && nameEquality && phoneEquality && catIdEquality);
+          bool stylistIdEquality = (this.GetStylistId() == newClient.GetStylistId());
+          return (idEquality && nameEquality && phoneEquality && stylistIdEquality);
       }
     }
     public override int GetHashCode()
@@ -76,11 +76,11 @@ namespace HairSalon.Models
       conn.Open();
 
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"INSERT INTO clients (name, phone, category_id) VALUES (@name, @phone, @catid);";
+      cmd.CommandText = @"INSERT INTO clients (name, phone, stylist_id) VALUES (@name, @phone, @stylistid);";
 
       cmd.Parameters.Add(new MySqlParameter("@name", _name));
       cmd.Parameters.Add(new MySqlParameter("@phone", _phone));
-      cmd.Parameters.Add(new MySqlParameter("@catid", category_id));
+      cmd.Parameters.Add(new MySqlParameter("@stylistid", stylist_id));
 
       cmd.ExecuteNonQuery();
 
@@ -117,16 +117,16 @@ namespace HairSalon.Models
       }
       return allClients;
     }
-    public static List<Client> CategorySearch(int catid)
+    public static List<Client> StylistSearch(int stylistid)
     {
       List<Client> searchClients = new List<Client> {};
       MySqlConnection conn = DB.Connection();
       conn.Open();
 
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"SELECT * FROM clients WHERE category_id = (@id);";
+      cmd.CommandText = @"SELECT * FROM clients WHERE stylist_id = @id;";
 
-      cmd.Parameters.Add(new MySqlParameter("@id", catid));
+      cmd.Parameters.Add(new MySqlParameter("@id", stylistid));
 
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
       while(rdr.Read())
@@ -144,6 +144,10 @@ namespace HairSalon.Models
           conn.Dispose();
       }
       return searchClients;
+    }
+    public void Delete()
+    {
+
     }
   }
 }

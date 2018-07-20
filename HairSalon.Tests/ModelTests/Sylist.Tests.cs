@@ -53,6 +53,21 @@ namespace HairSalon.Tests
       Stylist result = Stylist.Search(testStylist1.GetId());
       Assert.AreEqual(testStylist1, result);
     }
+    [TestMethod]
+    public void Delete_DeletesSpecifiedStylistFromDB_StylistList()
+    {
+      Stylist testStylist1 = new Stylist("John", "Normal Cuts");
+      Stylist testStylist2 = new Stylist("Rex", "80s Hairstyles");
+
+      testStylist1.Save();
+      testStylist2.Save();
+      testStylist2.Delete();
+
+      List<Stylist> testList = new List<Stylist>{testStylist1};
+      List<Stylist> resultList = Stylist.GetAll();
+
+      CollectionAssert.AreEqual(testList, resultList);
+    }
 
     public void Dispose()
     {
