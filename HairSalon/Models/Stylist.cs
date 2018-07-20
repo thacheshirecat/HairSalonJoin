@@ -180,5 +180,14 @@ namespace HairSalon.Models
         conn.Dispose();
       }
     }
+    public void AddSpecialty(Specialty newSpecialty)
+    {
+
+    }
+    public List<Specialty> GetAllSpecialties()
+    {
+      List<Specialty> foundSpecialties = new List<Specialty> {};
+      return foundSpecialties;
+    }
   }
 }

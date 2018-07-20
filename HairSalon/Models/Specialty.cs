@@ -122,7 +122,7 @@ namespace HairSalon.Models
         SpecialtyName = rdr.GetString(1);
       }
       Specialty foundSpecialty = new Specialty(SpecialtyName, SpecialtyId);
-      
+
       conn.Close();
       if (conn != null)
       {
