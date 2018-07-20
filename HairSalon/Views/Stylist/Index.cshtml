@@ -1,5 +1,5 @@
 <head>
-    <title>The Hair Salon</title>
+    <title>Snappy Snips</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
     <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
 </head>
@@ -7,19 +7,19 @@
   <div class="container">
     <h1>List of Stylists</h1>
     <div class="well">
-      @foreach(var person in Model)
+      @foreach(var stylist in Model)
       {
-        <li>Name: @person.GetName() -- <a href="/Stylist/@person.GetId()/View">More Info</a></li>
+        <li>Name: @stylist.GetName() -- <a href="/Stylist/@stylist.GetId()/View">More Info</a></li>
       }
     </div>
     <form action="/Stylist/CreateForm">
       <button class="btn btn-success" type="click">Add New Stylist</button>
     </form>
+    <form action="/">
+      <button class="btn btn-danger" type="click">Back</button>
+    </form>
     <form action="/Stylist/DeleteAll">
       <button class="btn btn-danger" type="click">Delete All Stylists</button>
-    </form>
-    <form action="/Client">
-      <button class="btn btn-success" type="click">View Client List</button>
     </form>
   </div>
 </body>

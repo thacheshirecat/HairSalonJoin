@@ -1,19 +1,43 @@
 <head>
-    <title>The Hair Salon</title>
+    <title>Snappy Snips</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
     <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
 </head>
 <body>
   <div class="container">
-    <h1>@Model.GetName()</h1>
-    <h2>About/Styles</h2>
+    <h1>@Model["stylist"].GetName()</h1>
     <div class="well">
-      <p>@Model.GetStyle()</p>
+      <h2>Style/Specialties</h2>
+      <p>Style: @Model["stylist"].GetStyle()</p>
+      @foreach(var special in Model["specialties"])
+      {
+        <p>@special.GetName()</p>
+      }
+      <form action="/Stylist/AddSpecialty" method="post">
+        <label for="newspecialtyid">Select a Specialty to Add</label>
+        <select name="newspecialtyid" required>
+        @foreach(var specialty in Model["allspecials"])
+        {
+          <option value="@specialty.GetId()">@specialty.GetName()</option>
+        }
+        </select>
+        <select name="stylistid" id="hiddenstylist">
+          <option value="@Model["stylist"].GetId()">@Model["stylist"].GetName()
+        </select>
+        <button class="btn btn-success" type="click">Add</button>
+      </form>
     </div>
-    <form action="/Client/@Model.GetId()/View">
-      <button class="btn btn-success" type="click">View Client List</button>
-    </form>
+    <div class="well">
+      <h2>Client List</h2>
+      @foreach(var client in Model["clients"])
+      {
+              <p>@client.GetName() | @client.GetPhone() | <a href="/Client/@client.GetId()/View">Details</a></p>
+      }
+    </div>
     <form action="/Stylist">
+      <button class="btn btn-success" type="click">Back</button>
+    </form>
+    <form action="/">
       <button class="btn btn-success" type="click">Home</button>
     </form>
   </div>
