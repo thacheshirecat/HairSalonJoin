@@ -56,7 +56,7 @@ namespace HairSalon.Tests
       Assert.AreEqual(testClient1, result);
     }
     [TestMethod]
-    public void FindClientsByStylist_ReturnsCorrectClients_ClientList()
+    public void SearchClientsByStylist_ReturnsCorrectClients_ClientList()
     {
       Client testClient1 = new Client("Billy", "5551238888", 1);
       Client testClient2 = new Client("Jean", "5551238889", 1);
@@ -65,7 +65,7 @@ namespace HairSalon.Tests
       testClient1.Save();
       testClient2.Save();
       testClient3.Save();
-      List<Client> resultList = Client.FindClientsByStylist(1);
+      List<Client> resultList = Client.SearchClientsByStylist(1);
       CollectionAssert.AreEqual(testList, resultList);
     }
     [TestMethod]
@@ -82,6 +82,51 @@ namespace HairSalon.Tests
       List<Client> resultList = Client.GetAll();
 
       CollectionAssert.AreEqual(testList, resultList);
+    }
+    [TestMethod]
+    public void Update_CorrectlyUpdatesClientNameInDB_String()
+    {
+      Client testClient = new Client("Billy", "5551238888", 1);
+      testClient.Save();
+      Client resultClient = new Client("Jean", "5551238889", 2);
+      resultClient.Save();
+
+      testClient.Update("Jean", "5551238888", 1);
+      Client controlClient = Client.Search(testClient.GetId());
+      string test = controlClient.GetName();
+      string result = resultClient.GetName();
+
+      Assert.AreEqual(result, test);
+    }
+    [TestMethod]
+    public void Update_CorrectlyUpdatesClientPhoneInDB_String()
+    {
+      Client testClient = new Client("Billy", "5551238888", 1);
+      testClient.Save();
+      Client resultClient = new Client("Jean", "5551238889", 2);
+      resultClient.Save();
+
+      testClient.Update("Billy", "5551238889", 1);
+      Client controlClient = Client.Search(testClient.GetId());
+      string test = controlClient.GetPhone();
+      string result = resultClient.GetPhone();
+
+      Assert.AreEqual(result, test);
+    }
+    [TestMethod]
+    public void Update_CorrectlyUpdatesClientStylistIdInDB_String()
+    {
+      Client testClient = new Client("Billy", "5551238888", 1);
+      testClient.Save();
+      Client resultClient = new Client("Jean", "5551238889", 2);
+      resultClient.Save();
+
+      testClient.Update("Billy", "5551238888", 2);
+      Client controlClient = Client.Search(testClient.GetId());
+      int test = controlClient.GetStylistId();
+      int result = resultClient.GetStylistId();
+
+      Assert.AreEqual(result, test);
     }
     public void Dispose()
     {

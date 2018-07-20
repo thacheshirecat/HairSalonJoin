@@ -68,6 +68,36 @@ namespace HairSalon.Tests
 
       CollectionAssert.AreEqual(testList, resultList);
     }
+    [TestMethod]
+    public void Update_CorrectlyUpdatesStylistNameInDB_String()
+    {
+      Stylist testStylist = new Stylist("John", "Normal Cuts");
+      testStylist.Save();
+      Stylist resultStylist = new Stylist("Rex", "80s Hairstyles");
+      resultStylist.Save();
+
+      testStylist.Update("Rex", "Normal Cuts");
+      Stylist controlStylist = Stylist.Search(testStylist.GetId());
+      string test = controlStylist.GetName();
+      string result = resultStylist.GetName();
+
+      Assert.AreEqual(result, test);
+    }
+    [TestMethod]
+    public void Update_CorrectlyUpdatesStylistStyleInDB_String()
+    {
+      Stylist testStylist = new Stylist("John", "Normal Cuts");
+      testStylist.Save();
+      Stylist resultStylist = new Stylist("Rex", "80s Hairstyles");
+      resultStylist.Save();
+
+      testStylist.Update("John", "80s Hairstyles");
+      Stylist controlStylist = Stylist.Search(testStylist.GetId());
+      string test = controlStylist.GetStyle();
+      string result = resultStylist.GetStyle();
+
+      Assert.AreEqual(result, test);
+    }
 
     public void Dispose()
     {

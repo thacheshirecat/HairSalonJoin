@@ -32,7 +32,7 @@ namespace HairSalon.Controllers
     [HttpGet("/Client/{id}/View")]
     public ActionResult ViewClient(int id)
     {
-      return View("View", Client.FindClientsByStylist(id));
+      return View("View", Client.SearchClientsByStylist(id));
     }
   }
 }
