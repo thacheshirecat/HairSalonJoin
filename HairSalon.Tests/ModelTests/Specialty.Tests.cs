@@ -61,7 +61,6 @@ namespace HairSalon.Tests
       Specialty testSpecialty = new Specialty("Buzz Cut");
       testSpecialty.Save();
 
-
       testSpecialty.AddStylist(testStylist);
       List<Stylist> testList = new List<Stylist> {testStylist};
       List<Stylist> resultList = testSpecialty.GetAllStylists();
