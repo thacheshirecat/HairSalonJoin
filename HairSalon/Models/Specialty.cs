@@ -44,15 +44,62 @@ namespace HairSalon.Models
     }
     public void Save()
     {
-      
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO specialties (name) VALUES (@name);";
+
+      cmd.Parameters.Add(new MySqlParameter("@name", _name));
+
+      cmd.ExecuteNonQuery();
+      _id = (int) cmd.LastInsertedId;
+
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
     }
     public static List<Specialty> GetAll()
     {
+      List<Specialty> allSpecialties = new List<Specialty> {};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
 
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM specialties;";
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        int SpecialtyId = rdr.GetInt32(0);
+        string SpecialtyName = rdr.GetString(1);
+        Specialty newSpecialty = new Specialty(SpecialtyName, SpecialtyId);
+        allSpecialties.Add(newSpecialty);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
+      return allSpecialties;
     }
     public static void DeleteAll()
     {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
 
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM specialties;";
+
+      cmd.ExecuteNonQuery();
+
+      conn.Close();
+      if (conn != null)
+      {
+          conn.Dispose();
+      }
     }
   }
 }
