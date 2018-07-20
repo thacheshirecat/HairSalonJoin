@@ -182,11 +182,52 @@ namespace HairSalon.Models
     }
     public void AddSpecialty(Specialty newSpecialty)
     {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
 
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO specialties_stylists (specialty_id, stylist_id) VALUES (@SpecialtyId, @StylistId);";
+
+      cmd.Parameters.Add(new MySqlParameter("@SpecialtyId", newSpecialty.GetId()));
+      cmd.Parameters.Add(new MySqlParameter("@StylistId", _id));
+
+      cmd.ExecuteNonQuery();
+
+      conn.Close();
+      if(conn != null)
+      {
+        conn.Dispose();
+      }
     }
     public List<Specialty> GetAllSpecialties()
     {
       List<Specialty> foundSpecialties = new List<Specialty> {};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT specialties.* FROM stylists
+                          JOIN specialties_stylists ON (stylists.id = specialties_stylists.stylist_id)
+                          JOIN specialties ON (specialties_stylists.specialty_id = specialties.id)
+                          WHERE stylists.id = @StylistId;";
+
+      cmd.Parameters.Add(new MySqlParameter("@StylistId", _id));
+
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        int SpecialtyId = rdr.GetInt32(0);
+        string SpecialtyName = rdr.GetString(1);
+        Specialty newSpecialty = new Specialty(SpecialtyName, SpecialtyId);
+        foundSpecialties.Add(newSpecialty);
+      }
+
+      conn.Close();
+      if(conn != null)
+      {
+        conn.Dispose();
+      }
+
       return foundSpecialties;
     }
   }

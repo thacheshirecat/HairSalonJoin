@@ -130,5 +130,14 @@ namespace HairSalon.Models
       }
       return foundSpecialty;
     }
+    public void AddStylist(Stylist newStylist)
+    {
+      
+    }
+    public List<Stylist> GetAllStylists()
+    {
+      List<Stylist> foundStylists = new List<Stylist> {};
+      return foundStylists;
+    }
   }
 }
