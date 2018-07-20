@@ -15,6 +15,7 @@ namespace HairSalon.Tests
     public void Dispose()
     {
       Specialty.DeleteAll();
+      Stylist.DeleteAll();
     }
     [TestMethod]
     public void Equals_ReturnsTrueForSameSpecialty_Specialty()

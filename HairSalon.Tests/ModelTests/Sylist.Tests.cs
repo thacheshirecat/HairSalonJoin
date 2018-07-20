@@ -12,6 +12,11 @@ namespace HairSalon.Tests
     {
         DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=alex_bunnell_test;";
     }
+    public void Dispose()
+    {
+      Stylist.DeleteAll();
+      Specialty.DeleteAll();
+    }
     [TestMethod]
     public void Equals_ReturnsTrueForSameStylist_Stylist()
     {
@@ -128,11 +133,6 @@ namespace HairSalon.Tests
       List<Specialty> resultList = testStylist1.GetAllSpecialties();
 
       CollectionAssert.AreEqual(testList, resultList);
-    }
-
-    public void Dispose()
-    {
-      Stylist.DeleteAll();
     }
   }
 }
