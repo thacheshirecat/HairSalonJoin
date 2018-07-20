@@ -5,7 +5,7 @@ Hair Salon Employee Terminal
 Alex Bunnell
 
 ### Description
-This program was created using C# and the MVC method as well as a MySQL database. The program allows users to keep track of stylists and their specialties as well as and their clients.
+This program was created using C# and the MVC method as well as a MySQL database. The program allows users to keep track of stylists and their specialties as well as their clients.
 
 ### Set Up Instructions
 1. Clone repository from https://github.com/thacheshirecat/HairSalonJoin
