@@ -23,7 +23,7 @@ namespace HairSalon.Controllers
       newClient.Save();
       return View("Index", Client.GetAll());
     }
-    [HttpGet("/Client/DeleteAll")]
+    [HttpPost("/Client/DeleteAll")]
     public ActionResult DeleteAllClients()
     {
       Client.DeleteAll();
@@ -32,7 +32,25 @@ namespace HairSalon.Controllers
     [HttpGet("/Client/{id}/View")]
     public ActionResult ViewClient(int id)
     {
-      return View("View", Client.SearchClientsByStylist(id));
+      return View("View", Client.Search(id));
+    }
+    [HttpPost("/Client/{id}/Delete")]
+    public ActionResult Delete(int id)
+    {
+      Client selectedClient = Client.Search(id);
+
+      selectedClient.Delete();
+
+      return View("Index", Client.GetAll());
+    }
+    [HttpPost("/Client/{id}/Update")]
+    public ActionResult Update(string newname, string newphone, int newstylist, int id)
+    {
+      Client thisClient = Client.Search(id);
+
+      thisClient.Update(newname, newphone, newstylist);
+
+      return View("Success", thisClient);
     }
   }
 }

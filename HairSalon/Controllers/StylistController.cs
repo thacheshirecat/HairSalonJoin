@@ -42,29 +42,44 @@ namespace HairSalon.Controllers
       model.Add("stylist", selectedStylist);
       model.Add("clients", stylistsClients);
       model.Add("specialties", stylistsSpecialties);
-      model.Add("allspecials"), allSpecialties);
+      model.Add("allspecials", allSpecialties);
 
       return View(model);
     }
-    [HttpPost("/Stylist/AddSpecialty")]
-    public ActionResult AddSpecialty(int stylistid, int newspecialtyid)
+    [HttpGet("/Stylist/{id}/Update")]
+    public ActionResult Update(int id)
     {
+      Stylist selectedStylist = Stylist.Search(id);
 
-      Dictionary<string, object> model = new Dictionary<string, object>();
+      return View(selectedStylist);
+    }
+    [HttpPost("/Stylist/{id}/Update")]
+    public ActionResult Update(string newname, string newstyle, int id)
+    {
+      Stylist selectedStylist = Stylist.Search(id);
 
-      Stylist selectedStylist = Stylist.Search(stylistid);
+      selectedStylist.Update(newname, newstyle);
+
+      return View("Success", selectedStylist);
+    }
+    [HttpPost("/Stylist/{id}/AddSpecialty")]
+    public ActionResult AddSpecialty(int id, int newspecialtyid)
+    {
+      Stylist selectedStylist = Stylist.Search(id);
       Specialty newSpecialty = Specialty.Search(newspecialtyid);
+
       selectedStylist.AddSpecialty(newSpecialty);
-      List<Client> stylistsClients = Client.SearchClientsByStylist(stylistid);
-      List<Specialty> stylistsSpecialties = selectedStylist.GetAllSpecialties();
-      List<Specialty> allSpecialties = Specialty.GetAll();
 
-      model.Add("stylist", selectedStylist);
-      model.Add("clients", stylistsClients);
-      model.Add("specialties", stylistsSpecialties);
-      model.Add("allspecials"), allSpecialties);
+      return View("Success", selectedStylist);
+    }
+    [HttpPost("/Stylist/{id}/Delete")]
+    public ActionResult Delete(int id)
+    {
+      Stylist foundStylist = Stylist.Search(id);
 
-      return View("View", model);
+      foundStylist.Delete();
+
+      return View("Index", Stylist.GetAll());
     }
   }
 }

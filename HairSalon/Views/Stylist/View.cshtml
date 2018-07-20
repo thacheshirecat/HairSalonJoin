@@ -13,32 +13,26 @@
       {
         <p>@special.GetName()</p>
       }
-      <form action="/Stylist/AddSpecialty" method="post">
-        <label for="newspecialtyid">Select a Specialty to Add</label>
-        <select name="newspecialtyid" required>
-        @foreach(var specialty in Model["allspecials"])
-        {
-          <option value="@specialty.GetId()">@specialty.GetName()</option>
-        }
-        </select>
-        <select name="stylistid" id="hiddenstylist">
-          <option value="@Model["stylist"].GetId()">@Model["stylist"].GetName()
-        </select>
-        <button class="btn btn-success" type="click">Add</button>
-      </form>
     </div>
     <div class="well">
       <h2>Client List</h2>
       @foreach(var client in Model["clients"])
       {
-              <p>@client.GetName() | @client.GetPhone() | <a href="/Client/@client.GetId()/View">Details</a></p>
+              <p>@client.GetName() | Phone: @client.GetPhone() | <a href="/Client/@client.GetId()/View">Edit</a></p>
       }
     </div>
+    <form action="/Stylist/@Model["stylist"].GetId()/Update">
+      <button class="btn btn-success" type="click">Update Stylist</button>
+    </form>
     <form action="/Stylist">
-      <button class="btn btn-success" type="click">Back</button>
+    <form action="/Stylist/@Model["stylist"].GetId()/Delete" method="post">
+      <button class="btn btn-danger" type="click">Delete Stylist</button>
+    </form>
+    <form action="/Stylist">
+      <button class="btn btn-info" type="click">Back</button>
     </form>
     <form action="/">
-      <button class="btn btn-success" type="click">Home</button>
+      <button class="btn btn-warning" type="click">Home</button>
     </form>
   </div>
 </body>

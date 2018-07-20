@@ -1,7 +1,7 @@
 @using HairSalon.Models;
 
 <head>
-    <title>The Hair Salon</title>
+    <title>Snappy Snips</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
     <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
 </head>
@@ -11,17 +11,19 @@
     <div class="well">
       @foreach(var person in Model)
       {
-        <li>Name: @person.GetName(), Phone#@person.GetPhone(), Stylist: @Stylist.Search(@person.GetCategoryId()).GetName()</li>
+        <li>@person.GetName() | Phone: @person.GetPhone()
+           | Stylist: @Stylist.Search(@person.GetStylistId()).GetName()
+           | <a href="/Client/@person.GetId()/View">Edit</a></li>
       }
     </div>
     <form action="/Client/CreateForm">
       <button class="btn btn-success" type="click">Add New Client</button>
     </form>
-    <form action="/Client/DeleteAll">
+    <form action="/Client/DeleteAll" method="post">
       <button class="btn btn-danger" type="click">Delete All Clients</button>
     </form>
-    <form action="/Stylist">
-      <button class="btn btn-success" type="click">Home</button>
+    <form action="/">
+      <button class="btn btn-info" type="click">Back</button>
     </form>
   </div>
 </body>

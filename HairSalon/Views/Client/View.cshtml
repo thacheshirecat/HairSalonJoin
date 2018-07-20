@@ -1,21 +1,39 @@
 @using HairSalon.Models;
 
 <head>
-    <title>The Hair Salon</title>
+    <title>Snappy Snips</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
     <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Client List</h1>
+    <h1>@Model.GetName()</h1>
     <div class="well">
-      @foreach(var person in Model)
-      {
-        <li>Name: @person.GetName(), Phone#@person.GetPhone(), Stylist: @Stylist.Search(@person.GetCategoryId()).GetName()</li>
-      }
+      <h4>Phone Number</h4>
+      <p>@Model.GetPhone()</p>
+      <h4>Stylist</h4>
+      <p>@Stylist.Search(@Model.GetStylistId()).GetName()</p>
     </div>
-    <form action="/Stylist">
-      <button class="btn btn-success" type="click">Home</button>
+    <h1>Update Info</h1>
+    <form action="/Client/@Model.GetId()/Update" method="post">
+      <label for="newname">Name</label>
+      <input type="text" name="newname" id="newname" class="form-control" required>
+      <label for="newphone">Phone#</label>
+      <input type="text" name="newphone" id="newphone" class="form-control" required>
+      <label for="newstylist">Select Stylist</label>
+      <select name="newstylist" required>
+      @foreach(var stylist in Stylist.GetAll())
+      {
+        <option value="@stylist.GetId()">@stylist.GetName()</option>
+      }
+      </select>
+      <button class="btn btn-success" type="submit">Update</button>
+    </form>
+    <form action="/Client/@Model.GetId()/Delete" method="post">
+      <button class="btn btn-danger" type="click">Delete</button>
+    </form>
+    <form action="/Client">
+      <button class="btn btn-info" type="click">Back</button>
     </form>
   </div>
 </body>
