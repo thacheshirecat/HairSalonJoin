@@ -11,7 +11,7 @@
       <p>Style: @Model["stylist"].GetStyle()</p>
       @foreach(var special in Model["specialties"])
       {
-        <p>@special.GetName()</p>
+        <p>Specialty: @special.GetName()</p>
       }
     </div>
     <div class="well">
@@ -24,7 +24,6 @@
     <form action="/Stylist/@Model["stylist"].GetId()/Update">
       <button class="btn btn-success" type="click">Update Stylist</button>
     </form>
-    <form action="/Stylist">
     <form action="/Stylist/@Model["stylist"].GetId()/Delete" method="post">
       <button class="btn btn-danger" type="click">Delete Stylist</button>
     </form>

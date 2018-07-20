@@ -23,7 +23,7 @@ namespace HairSalon.Controllers
       newStylist.Save();
       return View("Index", Stylist.GetAll());
     }
-    [HttpGet("/Stylist/DeleteAll")]
+    [HttpPost("/Stylist/DeleteAll")]
     public ActionResult DeleteAllStylists()
     {
       Stylist.DeleteAll();

@@ -1,0 +1,38 @@
+@using HairSalon.Models;
+
+<head>
+    <title>Snappy Snips</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>@Model["specialty"].GetName()</h1>
+    <div class="well">
+      <h2>Proficient Stylists</h2>
+      @foreach(var stylist in Model["stylists"])
+      {
+        <p>@stylist.GetName() | <a href="/Stylist/@stylist.GetId()/View">View</a></p>
+      }
+    </div>
+
+
+    <form action="/Stylist/@Model["specialty"].GetId()/AddStylist" method="post">
+      <label for="newstylistid">Add Proficient Stylist</label>
+      <select name="newstylistid" required>
+      @foreach(var stylist in Stylist.GetAll())
+      {
+        <option value="@stylist.GetId()">@stylist.GetName()</option>
+      }
+      </select>
+      <button class="btn btn-success" type="click">Add</button>
+    </form>
+
+    <form action="/Specialty">
+      <button class="btn btn-info" type="click">Back</button>
+    </form>
+    <form action="/">
+      <button class="btn btn-warning" type="click">Home</button>
+    </form>
+  </div>
+</body>

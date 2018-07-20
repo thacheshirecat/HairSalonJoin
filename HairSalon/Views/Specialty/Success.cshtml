@@ -5,13 +5,9 @@
 </head>
 <body>
   <div class="container">
-    <h1>Add a New Specialty</h1>
-    <form action="/Specialty/Add" method="post">
-      <label for="newname">Name</label>
-      <input type="text" name="newname" id="newname" class="form-control" required>
-      <button class="btn btn-success" type="submit">Add New Specialty</button>
-    </form>
-    <form action="/Specialty">
+    <h1>Success!</h1>
+    <h2>Records Updated</h2>
+    <form action="/Specialty/@Model.GetId()/View">
       <button class="btn btn-info" type="click">Back</button>
     </form>
   </div>
