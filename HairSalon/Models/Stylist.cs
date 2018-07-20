@@ -52,7 +52,6 @@ namespace HairSalon.Models
 
     public static void DeleteAll()
     {
-        Client.DeleteAll();
         MySqlConnection conn = DB.Connection();
         conn.Open();
 
