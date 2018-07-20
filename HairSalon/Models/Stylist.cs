@@ -77,7 +77,7 @@ namespace HairSalon.Models
 
       cmd.ExecuteNonQuery();
       _id = (int) cmd.LastInsertedId;
-      
+
       conn.Close();
       if (conn != null)
       {
@@ -122,17 +122,17 @@ namespace HairSalon.Models
 
       var rdr = cmd.ExecuteReader() as MySqlDataReader;
 
-      int CategoryId = 0;
+      int StylistId = 0;
       string StylistName = "";
       string StylistStyle = "";
 
       while(rdr.Read())
       {
-        CategoryId = rdr.GetInt32(0);
+        StylistId = rdr.GetInt32(0);
         StylistName = rdr.GetString(1);
         StylistStyle = rdr.GetString(2);
       }
-      Stylist newStylist = new Stylist(StylistName, StylistStyle, CategoryId);
+      Stylist newStylist = new Stylist(StylistName, StylistStyle, StylistId);
       conn.Close();
       if (conn != null)
       {
