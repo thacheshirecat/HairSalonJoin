@@ -5,10 +5,10 @@ Hair Salon Employee Terminal
 Alex Bunnell
 
 ### Description
-This program was created using C# and the MVC method as well as a MySQL database. The program allows users to keep track of stylists and their clients.
+This program was created using C# and the MVC method as well as a MySQL database. The program allows users to keep track of stylists and their specialties as well as and their clients.
 
 ### Set Up Instructions
-1. Clone repository from https://github.com/thacheshirecat/HairSalon
+1. Clone repository from https://github.com/thacheshirecat/HairSalonJoin
 2. Start a MySQL database server using port #8889
 3. Unzip the required databases and add them to the MySQL server, or use the below command promts to set up the correct databases and tables
 4. In the terminal, navigate to the Project's main directory, HairSalon, and execute dotnet run
