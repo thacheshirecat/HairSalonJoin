@@ -10,7 +10,7 @@ This program was created using C# and the MVC method as well as a MySQL database
 ### Set Up Instructions
 1. Clone repository from https://github.com/thacheshirecat/HairSalonJoin
 2. Start a MySQL database server using port #8889
-3. Unzip the required databases and add them to the MySQL server, or use the below command promts to set up the correct databases and tables
+3. Add the included .sql files to your MySQL server, or use the below command promts to set up the correct databases and tables
 4. In the terminal, navigate to the Project's main directory, HairSalon, and execute dotnet run
 5. In the browser, navigate to localhost:5000
 
