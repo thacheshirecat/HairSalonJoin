@@ -101,5 +101,9 @@ namespace HairSalon.Models
           conn.Dispose();
       }
     }
+    public static Specialty Search(int id)
+    {
+      
+    }
   }
 }
