@@ -42,5 +42,17 @@ namespace HairSalon.Models
     {
         return this.GetId().GetHashCode();
     }
+    public void Save()
+    {
+      
+    }
+    public static List<Specialty> GetAll()
+    {
+
+    }
+    public static void DeleteAll()
+    {
+
+    }
   }
 }
